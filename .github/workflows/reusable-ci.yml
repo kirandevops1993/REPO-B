@@ -13,12 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ inputs.repo_url }}
-          
-
       - name: Set Up JDK
         uses: actions/setup-java@v3
         with:
