@@ -10,7 +10,8 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: Larger GitHub-hosted runners
+
 
     steps:
       - name: Set Up JDK
