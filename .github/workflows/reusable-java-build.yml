@@ -1,26 +1,34 @@
-```
-name: Reusable Java Build Workflow
-on:
-workflow_call:
-inputs:
-java-version:
-required: true
-type: string
-build-command:
-required: true
-type: string
-jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout code
-uses: actions/checkout@v3
-- name: Set up JDK
-uses: actions/setup-java@v3
+name: Reusable CI Workflow
 
-with:
-java-version: ${{ inputs.java-version }}
-distribution: 'temurin'
-- name: Build Java project
-run: ${{ inputs.build-command }}
-```
+on:
+  workflow_call:
+    inputs:
+      repo_url:
+        required: true
+        type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.repo_url }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build with Maven
+        run: mvn package
+
+      - name: Run WAR File
+        run: java -jar target/*.war
