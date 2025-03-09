@@ -36,8 +36,6 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        env:
-          MAVEN_OPTS: ${{ secrets.MAVEN_OPTS }}
         run: mvn package
 
       - name: Run WAR File
