@@ -1,7 +1,3 @@
-Share
-
-User
-You said:
 name: Reusable CI Workflow
 
 on:
@@ -11,10 +7,6 @@ on:
         required: true
         type: string
 
-    secrets:
-      GITHUB_TOKEN:
-        required: true
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -22,9 +14,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          repository: ${{ inputs.repo_url }}
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify POM.xml Exists
         run: |
@@ -50,7 +39,3 @@ jobs:
             echo "Error: No WAR file found in target directory."
             exit 1
           fi
-
-permissions:
-  contents: read
-  actions: read
