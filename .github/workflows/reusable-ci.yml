@@ -6,14 +6,22 @@ on:
       repo_url:
         required: true
         type: string
-   
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Verify POM.xml Exists
+        run: |
+          if [ ! -f pom.xml ]; then
+            echo "Error: pom.xml not found in the directory. Ensure the correct repo is checked out."
+            exit 1
+          fi
+
       - name: Set Up JDK
         uses: actions/setup-java@v3
         with:
@@ -24,4 +32,10 @@ jobs:
         run: mvn package
 
       - name: Run WAR File
-        run: java -jar target/*.war
+        run: |
+          if ls target/*.war 1> /dev/null 2>&1; then
+            java -jar target/*.war
+          else
+            echo "Error: No WAR file found in target directory."
+            exit 1
+          fi
