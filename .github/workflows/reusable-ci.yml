@@ -1,3 +1,7 @@
+Share
+
+User
+You said:
 name: Reusable CI Workflow
 
 on:
@@ -46,3 +50,7 @@ jobs:
             echo "Error: No WAR file found in target directory."
             exit 1
           fi
+
+permissions:
+  contents: read
+  actions: read
