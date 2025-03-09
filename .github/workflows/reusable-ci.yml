@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: Standard GitHub-hosted runners
+    runs-on: ubuntu-latest
 
 
     steps:
