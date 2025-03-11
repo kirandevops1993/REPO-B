@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build with Maven
+      - name: Run with Maven
         run:  mvn ${{ inputs.maven-goal }}
 
       - name: Run WAR File
