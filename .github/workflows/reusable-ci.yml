@@ -39,12 +39,6 @@ jobs:
           mvn ${{ inputs.maven-goal }}
           echo "status=success" >> $GITHUB_ENV
 
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: built-artifacts
-          path: target/
-
       - name: Run Tests
         run: mvn test
 
