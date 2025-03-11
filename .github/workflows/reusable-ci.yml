@@ -1,3 +1,4 @@
+
 name: Reusable CI Workflow
 
 on:
@@ -13,7 +14,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    container:
+      image: maven:3.8.5-openjdk-17
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -32,6 +34,20 @@ jobs:
           java-version: '17'
 
       - name: Run with Maven
-        run:  mvn ${{ inputs.maven-goal }}
+        id: build-step
+        run: |
+          mvn ${{ inputs.maven-goal }}
+          echo "status=success" >> $GITHUB_ENV
 
-      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-artifacts
+          path: target/
+
+      - name: Run Tests
+        run: mvn test
+
+      - name: Cleanup Resources
+        if: always()
+        run: echo "Cleaning up resources after build"
