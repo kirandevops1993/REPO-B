@@ -6,6 +6,9 @@ on:
       repo_url:
         required: true
         type: string
+        maven-goal:
+         required: true
+         type: string 
 
 jobs:
   build-and-deploy:
