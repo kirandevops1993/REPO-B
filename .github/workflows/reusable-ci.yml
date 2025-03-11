@@ -31,11 +31,4 @@ jobs:
       - name: Run with Maven
         run:  mvn ${{ inputs.maven-goal }}
 
-      - name: Run WAR File
-        run: |
-          if ls target/*.war 1> /dev/null 2>&1; then
-            java -jar target/*.war
-          else
-            echo "Error: No WAR file found in target directory."
-            exit 1
-          fi
+      
