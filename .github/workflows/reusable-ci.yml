@@ -6,7 +6,7 @@ on:
       repo_url:
         required: true
         type: string
-      maven-goal:   # Incorrect indentation fixed
+      maven-goal:   
         required: true
         type: string
 
