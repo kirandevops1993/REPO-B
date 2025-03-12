@@ -15,6 +15,7 @@ jobs:
     container:
       image: maven:3.8.5-openjdk-17 
     env:
+      MEMORY_LIMIT: "default"
     timeout-minutes: 15
     continue-on-error: false
     permissions:
