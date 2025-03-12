@@ -9,14 +9,13 @@ on:
       maven-goal:   
         required: true
         type: string
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     container:
-      image: maven:3.8.5-openjdk-17
+      image: my-java-builder  
     env:
-      MAVEN_OPTS: "-Xmx1024m"
+      MEMORY_LIMIT: "default"
     timeout-minutes: 15
     continue-on-error: false
     permissions:
@@ -24,6 +23,7 @@ jobs:
     strategy:
       matrix:
         java: [11, 17]
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
