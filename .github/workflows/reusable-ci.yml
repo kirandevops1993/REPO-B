@@ -13,7 +13,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     container:
-      image: maven:3.8.5-openjdk-17  # Fixed image
+      image: maven:3.8.5-openjdk-17 
     env:
       MEMORY_LIMIT: "default"
     timeout-minutes: 15
