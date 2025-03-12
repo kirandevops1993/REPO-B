@@ -13,15 +13,17 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     container:
-      image: maven:3.8.5-openjdk-17
+      image: maven:3.8.5-openjdk-17  # Fixed image
     env:
       MEMORY_LIMIT: "default"
     timeout-minutes: 15
     continue-on-error: false
-    
+    permissions:
+      contents: read
     strategy:
       matrix:
-        java: [8, 17]
+        java: [11, 17]
+
 
     steps:
       - name: Checkout Repository
