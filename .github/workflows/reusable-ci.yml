@@ -15,7 +15,6 @@ jobs:
     container:
       image: maven:3.8.5-openjdk-17 
     env:
-      
     timeout-minutes: 15
     continue-on-error: false
     permissions:
