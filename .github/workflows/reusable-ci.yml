@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: .
     container:
       image: maven:3.8.5-openjdk-17 
     env:
@@ -37,7 +37,6 @@ jobs:
             echo "Error: pom.xml not found in the directory. Ensure the correct repo is checked out."
             exit 1
           fi
-        working-directory: ./app  # Updated to match the working directory
 
       - name: Run with Maven
         id: build-step
