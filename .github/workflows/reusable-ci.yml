@@ -1,3 +1,7 @@
+Share
+
+User
+You said:
 name: Reusable CI Workflow
 
 on:
@@ -9,44 +13,36 @@ on:
       maven-goal:   
         required: true
         type: string
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app  
-    
     container:
       image: maven:3.8.5-openjdk-17 
-    
     env:
       MEMORY_LIMIT: "default"
-    
     timeout-minutes: 15
     continue-on-error: false
-    
     permissions:
       contents: read
-      packages: read
-     
     strategy:
       matrix:
         java: [11, 17]
 
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Moved under 'with'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 2
 
       - name: Verify POM.xml Exists
         run: |
-          if [ ! -f app/pom.xml ]; then
+          if [ ! -f pom.xml ]; then
             echo "Error: pom.xml not found in the directory. Ensure the correct repo is checked out."
             exit 1
           fi
+        working-directory: ./
 
       - name: Set Up JDK
         uses: actions/setup-java@v3
@@ -68,4 +64,4 @@ jobs:
 
       - name: Cleanup Resources
         if: always()
-        run: echo "Cleaning up resources after build"
+        run: echo "Cleaning up resources after build
