@@ -12,6 +12,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+     defaults:
+      run:
+        working-directory: ./app
     container:
       image: maven:3.8.5-openjdk-17 
     env:
