@@ -19,8 +19,8 @@ jobs:
     timeout-minutes: 15
     continue-on-error: false
     permissions:
-      contents: write
-      packages: write
+      contents: Read
+      packages: Read
      
     strategy:
       matrix:
