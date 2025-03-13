@@ -69,7 +69,7 @@ jobs:
 
   cleanup:
     runs-on: ubuntu-latest
-    depends-on: [build-and-deploy]  
+    needs: [build-and-deploy]  
     if: always()  
     steps:
       - name: Cleanup Resources
