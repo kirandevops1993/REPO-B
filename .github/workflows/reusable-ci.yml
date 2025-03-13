@@ -20,9 +20,9 @@ jobs:
     continue-on-error: false
     permissions:
       contents: write
-      pull-requests: write
+      pull-requests: None
       packages: write
-      deployments: write
+      deployments: None
      
     strategy:
       matrix:
