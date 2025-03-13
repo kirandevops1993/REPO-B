@@ -19,7 +19,11 @@ jobs:
     timeout-minutes: 15
     continue-on-error: false
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
+      packages: write
+      deployments: write
+     
     strategy:
       matrix:
         java: [11, 17]
